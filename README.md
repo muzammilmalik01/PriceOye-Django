@@ -66,6 +66,7 @@ Containerized setup with Dockers, Postgre SQL, Nginx and Gucicorn.
 - **entrypoint.sh:** Shell script for setup and initialization during container startup.
 
 ### Usage:
+NOTE: Please rename env.dev and env.prod to .env.dev and .env.prod 
 1. Ensure Docker is installed.
 2. Git Clone the project.
 3. Goto:
