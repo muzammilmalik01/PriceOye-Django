@@ -1,0 +1,32 @@
+# official base image
+FROM python:3.10.9-alpine3.17
+
+# set work directory
+WORKDIR /home/app/
+
+# set environment variables
+ENV PYTHONDONTWRITEBYCODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2 dependencies
+RUN apk update && apk add postgresql-dev gcc python3-dev musl-dev linux-headers
+
+# install dependencies
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
+
+# create directories for media and static files
+RUN mkdir -p /home/app/web/media
+RUN mkdir -p /home/app/web/staticfiles
+
+# copy entrypoint.sh
+COPY ./entrypoint.prod.sh .
+RUN sed -i 's/\r$//g' /home/app/entrypoint.prod.sh
+RUN chmod +x /home/app/entrypoint.prod.sh
+
+# copy project
+COPY . .
+
+# run entrypoint.sh
+ENTRYPOINT ["/home/app/entrypoint.prod.sh"]
