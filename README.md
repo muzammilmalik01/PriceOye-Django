@@ -21,7 +21,7 @@ A demo back-end eCommerce project built with DJango.
 # Django E-Commerce Project Locally
 1. **Clone the Repository:**
    ```bash
-   git clone 
+   git clone https://github.com/muzammilmalik01/PriceOye-Django.git
    cd Price-oye/Simple/priceoye
 2. **Create the virtual environment:**
    ```bash
